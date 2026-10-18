@@ -165,7 +165,9 @@ export class Wrestler extends Fighter {
   }
 
   hurt(amount: number, from: Wrestler | null, W: World) {
-    const dmg = (DAMAGE_SCALE * amount * (from ? from.stats.power : 1)) / this.stats.tough;
+    let dmg = (DAMAGE_SCALE * amount * (from ? from.stats.power : 1)) / this.stats.tough;
+    // difficulty: CPUs hit humans softer on easy, harder on hard
+    if (from && !from.human && this.human) dmg *= 0.7 + W.difficulty * 0.5;
     this.hp = Math.max(0, this.hp - dmg);
     this.lastHurt = W.time;
     this.spirit = Math.max(0, this.spirit - dmg * 0.5);

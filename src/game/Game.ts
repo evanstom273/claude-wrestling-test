@@ -333,6 +333,7 @@ export class Game implements World {
       (s.mesh.material as THREE.MeshBasicMaterial).opacity = Math.max(0, s.life * 2.5);
       if (s.life <= 0) {
         this.scene.remove(s.mesh);
+        (s.mesh.material as THREE.Material).dispose();
         this.sparkList.splice(i, 1);
       }
     }

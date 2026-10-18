@@ -399,7 +399,7 @@ export class AI {
       this.plan = { kind: 'weapon', until: W.time + 4 };
       return;
     }
-    if (me.inRing && t.inRing && d > 3.2 && chance(0.35)) {
+    if (me.inRing && t.inRing && d > 3.2 && chance(0.12 + this.diff * 0.28)) {
       this.plan = { kind: 'run', until: W.time + 2 };
       return;
     }
